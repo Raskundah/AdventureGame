@@ -15,7 +15,7 @@ void describePlayer(Player toDescribe)
 	std::cout << "This mighty adventurer " << toDescribe.playerName << " Is " << toDescribe.description << " and is weilding " << toDescribe.weaponName << " and their armour is " << toDescribe.armourName << ". They have a health of "
 		<< toDescribe.health << " and an attack value of " << toDescribe.health << ". their inventory contains: ";
 
-	for (int i = 0; i <= toDescribe.inventory.size(); ++i)
+	for (int i = 0; i < toDescribe.inventory.size(); ++i)
 	{
 		std::cout << toDescribe.inventory[i];
 		std::cout << "\n";
@@ -33,14 +33,14 @@ void describeArea(Area toDescribe)
 {
 	std::cout << "This area is " << toDescribe.areaName << " described as " << toDescribe.areaDescription << " And has exits ";
 
-	for (int i = 0; i <= toDescribe.areaExits.size(); ++i)
+	for (int i = 0; i < toDescribe.areaExits.size(); ++i)
 	{
 		std::cout << toDescribe.areaExits[i] << " ";
 
 	}
 
 	std::cout << "And contains ";
-	for (int i = 0; i <= toDescribe.areaContents.size(); ++i)
+	for (int i = 0; i < toDescribe.areaContents.size(); ++i)
 	{
 		std::cout << toDescribe.areaContents[i] << " ";
 	}
@@ -191,6 +191,7 @@ int main()
 	bossRoom.areaContents.push_back("Dragon's Hoard");
 
 #pragma endregion
+
 #pragma region writeToCOnsole
 
 	//player console
