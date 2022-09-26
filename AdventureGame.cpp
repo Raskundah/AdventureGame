@@ -26,7 +26,9 @@ void describePlayer(Player toDescribe)
 
 void describeMonster(Monster describe)
 {
-	std::cout << "This monster is a " << describe.monsterName << " Described as " << describe.monsterDescription << "with attack value of " << describe.attack << "and a health value of " << describe.health << "." << "\n";
+	std::cout << "This monster is a " << describe.monsterName << " Described as " << describe.monsterDescription << " with attack value of " << describe.attack << " and a health value of " << describe.health << "." << "\n";
+
+	std::cout << "\n";
 }
 
 void describeArea(Area toDescribe)
@@ -39,13 +41,15 @@ void describeArea(Area toDescribe)
 
 	}
 
-	std::cout << "And contains ";
+	std::cout << " And contains ";
 	for (int i = 0; i < toDescribe.areaContents.size(); ++i)
 	{
 		std::cout << toDescribe.areaContents[i] << " ";
 	}
 
 	std::cout << "\n";
+
+
 
 }
 
@@ -201,23 +205,32 @@ int main()
 	describePlayer(archer);
 
 	//Monster console
+	std::cout << "\n";
+
 
 	describeMonster(dragon);
 	describeMonster(slime);
 	describeMonster(minotaur);
 
 	// area describe
+	std::cout << "\n";
+
+
 	describeArea(start);
 	describeArea(beforeBoss);
 	describeArea(bossRoom);
 
 	//feature describe
+	std::cout << "\n";
+
 
 	describeFeatures(fountain);
 	describeFeatures(rubble);
 	describeFeatures(door);
 
 	//item describe
+	std::cout << "\n";
+
 
 	describeItems(key);
 	describeItems(torch);
