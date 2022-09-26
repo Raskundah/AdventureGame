@@ -135,6 +135,7 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdventureGame.h" />
     <ClInclude Include="Area.h++" />
     <ClInclude Include="Feature.h++" />
     <ClInclude Include="Item.h++" />

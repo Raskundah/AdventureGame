@@ -50,5 +50,8 @@
     <ClInclude Include="Item.h++">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AdventureGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
