@@ -92,7 +92,7 @@ int main()
 #pragma endregion
 
 #pragma region InstancePlayer
-	//define Player instances
+	/*define Player instances
 
 	warrior.playerName = "Grog";
 	warrior.description = "A might berzerker, ready to chop skulls";
@@ -123,6 +123,7 @@ int main()
 	archer.inventory.push_back("Potion of invisibility");
 	archer.inventory.push_back("Bear food");
 
+	*/
 
 #pragma endregion
 
@@ -144,7 +145,7 @@ int main()
 #pragma region monsters
 	//define and populate monsters
 
-	slime.monsterName = "Slime_03";
+	slime.monsterName = "Slime 03";
 	slime.monsterDescription = "A sickly, green slime creature.";
 	slime.attack = 10;
 	slime.health = 10;
@@ -196,9 +197,9 @@ int main()
 
 #pragma endregion
 
-#pragma region writeToCOnsole
+#pragma region writeToConsole
 
-	//player console
+	/*player console
 
 	describePlayer(knight);
 	describePlayer(warrior);
@@ -236,7 +237,12 @@ int main()
 	describeItems(torch);
 	describeItems(rock);
 
+	*/
+
 #pragma endregion
+
+	warrior.playerArea = &start;
+	warrior.playerArea->Look();
 
 }
 
