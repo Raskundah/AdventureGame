@@ -10,9 +10,14 @@ Player::Player()
 , armourName("")
 , inventory()
 ,playerArea(nullptr)
+,location()
 
 {
 
+}
+
+Player::~Player()
+{
 }
 
 

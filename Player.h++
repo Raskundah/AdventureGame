@@ -9,6 +9,7 @@ class Player
 public:
 
 	Player();
+	~Player();
 
 	std::string playerName;
 	std::string description;
@@ -18,6 +19,7 @@ public:
 	std::string armourName;
 	std::vector<std::string> inventory;
 	Area* playerArea;
+	std::string location;
 
 };
 

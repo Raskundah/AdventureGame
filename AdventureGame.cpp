@@ -10,6 +10,7 @@
 #include "Monster.h++"
 #include "Player.h++"
 
+
 void describePlayer(Player toDescribe)
 {
 	std::cout << "This mighty adventurer " << toDescribe.playerName << " Is " << toDescribe.description << " and is weilding " << toDescribe.weaponName << " and their armour is " << toDescribe.armourName << ". They have a health of "
@@ -182,18 +183,22 @@ int main()
 	start.areaName = "StartRoom";
 	start.areaDescription = "This is the room you woke up in, naked and afraid.";
 	start.areaContents.push_back("rubble");
-	start.areaExits.push_back("North");
+	//start.areaExits.push_back("North");
+	start.exits = { {0, " The room to the north looks pretty scary."} };
 
 	beforeBoss.areaName = "Dragon_PreBossRoom";
 	beforeBoss.areaDescription = "Before you lies a single door to the west, it looks to be made of iron, hot to the touch.";
 	beforeBoss.areaContents.push_back("key");
-	beforeBoss.areaExits.push_back("west");
+	// beforeBoss.areaExits.push_back("west");
+	beforeBoss.exits = { {0, " To the west, you see a dangerous looking room."},
+		{1, " Back the way you came, stands the empty room that starts this level."} };
 
 	bossRoom.areaName = "Dragons_Lair";
 	bossRoom.areaDescription = "as you enter, the roar of a dragon fills your ears, you quickly dodge the dragons jaws!";
 	bossRoom.areaExits.push_back("east");
-	bossRoom.areaExits.push_back("south");
+	// bossRoom.areaExits.push_back("south");
 	bossRoom.areaContents.push_back("Dragon's Hoard");
+	bossRoom.exits = { {0, " Back the way you came, sits the entrance to the dragon's Lair."} };
 
 #pragma endregion
 
@@ -243,6 +248,9 @@ int main()
 
 	warrior.playerArea = &start;
 	warrior.playerArea->Look();
+	
+	
+	warrior.playerArea->Go("", warrior*);
 
 }
 
