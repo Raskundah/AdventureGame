@@ -3,18 +3,30 @@
 
 
 
+
+
+
 Area::Area()
-	:
- areaName()
-,areaDescription()
-,areaContents()
-,areaExits()
-,playerArea(nullptr)
-,exits{}
-{}
+{
+}
+
+Area::Area(std::string areaName, std::string areaDescription, std::vector<std::string> areaContents, std::vector<Area*> areaExits)
+	: areaName()
+	,areaDescription()
+	,areaContents()
+	, areaExits()
+{
+
+}
 
 Area::~Area()
 {
+
+}
+
+void Area::addExit(Area* addExit)
+{
+	areaExits.push_back(addExit);
 }
 
 
@@ -22,22 +34,33 @@ Area::~Area()
 
 void Area::Look()
 {
-	std::cout << this->areaDescription;
-	for (auto itr = exits.begin(); itr != exits.end(); ++itr)
-	{
-		cout << itr->second << " " << endl;
-	}
+	std::cout << areaDescription << "And the exits here are" << "\n";
 
-		std::cout << "\n";
+	for (int i = 0; i < areaExits.size(); ++i)
+	{
+		std::cout << areaExits[i]->areaName << "\n";
+	}
 }
 
-void Area::Go(std::string targetArea, Player* toGo)
+void Area::Go(std::string exit, Player* toGo)
 {
-	Look();
+	Look(); 
 	cout << "Where would you like to go?";
-	cin >> targetArea;
+	std::getline(std::cin, exit);
+
+	for (int i = 0; i < areaExits.size(); ++i )
+	{
+		if (exit = &areaExits[i])
+		{
+
+		}
+	}
 	
-	playerArea = toGo
+	
+	playerArea = toGo;
+
+
+	//Look();
 }
 
 

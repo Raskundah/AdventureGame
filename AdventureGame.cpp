@@ -180,25 +180,24 @@ int main()
 #pragma region areas
 	//populate areas.
 
+	bossRoom.areaName = "";
+	bossRoom.areaDescription = "as you enter, the roar of a dragon fills your ears, you quickly dodge the dragons jaws!";
+	bossRoom.areaContents.push_back("Dragon's Hoard");
+	
+	beforeBoss.areaName = "this area looks to be a cavernous chamber";
+	beforeBoss.areaDescription = "Before you lies a single door to the west, it looks to be made of iron, hot to the touch.";
+	beforeBoss.areaContents.push_back("key");
+
 	start.areaName = "StartRoom";
 	start.areaDescription = "This is the room you woke up in, naked and afraid.";
 	start.areaContents.push_back("rubble");
-	//start.areaExits.push_back("North");
-	start.exits = { {0, " The room to the north looks pretty scary."} };
 
-	beforeBoss.areaName = "Dragon_PreBossRoom";
-	beforeBoss.areaDescription = "Before you lies a single door to the west, it looks to be made of iron, hot to the touch.";
-	beforeBoss.areaContents.push_back("key");
-	// beforeBoss.areaExits.push_back("west");
-	beforeBoss.exits = { {0, " To the west, you see a dangerous looking room."},
-		{1, " Back the way you came, stands the empty room that starts this level."} };
+	start.addExit(&beforeBoss);
+	beforeBoss.addExit(&start);
+	beforeBoss.addExit(&bossRoom);
+	bossRoom.addExit(&beforeBoss);
 
-	bossRoom.areaName = "Dragons_Lair";
-	bossRoom.areaDescription = "as you enter, the roar of a dragon fills your ears, you quickly dodge the dragons jaws!";
-	bossRoom.areaExits.push_back("east");
-	// bossRoom.areaExits.push_back("south");
-	bossRoom.areaContents.push_back("Dragon's Hoard");
-	bossRoom.exits = { {0, " Back the way you came, sits the entrance to the dragon's Lair."} };
+
 
 #pragma endregion
 
@@ -250,7 +249,8 @@ int main()
 	warrior.playerArea->Look();
 	
 	
-	warrior.playerArea->Go("", warrior*);
+
+	warrior.playerArea->Go(, &warrior);
 
 }
 
