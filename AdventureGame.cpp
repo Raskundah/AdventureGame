@@ -9,7 +9,7 @@
 #include "Item.h++"
 #include "Monster.h++"
 #include "Player.h++"
-
+/*
 
 void describePlayer(Player toDescribe)
 {
@@ -64,6 +64,8 @@ void describeFeatures(Feature toDescribe)
 	std::cout << "This feature is " << toDescribe.featureName << " and is described as " << toDescribe.featureDescription << "\n";
 
 }
+*/
+
 
 int main()
 {
@@ -93,17 +95,20 @@ int main()
 #pragma endregion
 
 #pragma region InstancePlayer
-	/*define Player instances
+	//define Player instances
 
-	warrior.playerName = "Grog";
-	warrior.description = "A might berzerker, ready to chop skulls";
-	warrior.health = 200;
-	warrior.attackValue = 50;
-	warrior.weaponName = "SkullCleaver";
-	warrior.armourName = "Unarmoured Defence!";
-	warrior.inventory.push_back("Key");
-	warrior.inventory.push_back("Potion of Healing");
+	
+	warrior.SetPlayerName("Grog");
+	warrior.SetPlayerDescription("A mighty berzerker, ready to chop skulls");
+	warrior.SetHealth(200);
+	warrior.SetAttackValue(50);
+	warrior.SetWeaponName("Skull Cleaver");
+	warrior.SetArmourname("Unarmoured Defence");
+	warrior.AddToInventory("key");
+	warrior.AddToInventory("potion of healing");
 
+	/*
+	
 	knight.playerName = "Magnus";
 	knight.description = "A paladin devoted to the norse god Odin!";
 	knight.health = 75;
@@ -126,32 +131,36 @@ int main()
 
 	*/
 
+	
+
 #pragma endregion
 
 #pragma region features
 	//define and populate features
 
 
-	door.featureDescription = "An ordinary wooden door";
-	door.featureName = "Oak_Door_01";
+	door.SetFeatureDescription("An ordinary wooden door");
+	door.SetFeatureName("Oak_Door_01");
 
-	rubble.featureName = "Rubble_Pile";
-	rubble.featureDescription = "A simple rubble pile.";
+	rubble.SetFeatureName("Rubble_Pile");
+	rubble.SetFeatureDescription("A simple rubble pile.");
 
-	fountain.featureDescription = "A fountain long bereft of water.";
-	fountain.featureName = "fountain_empty";
+	fountain.SetFeatureDescription("A fountain long bereft of water.");
+	fountain.SetFeatureDescription("fountain_empty");
 
 #pragma endregion
 
 #pragma region monsters
 	//define and populate monsters
 
-	slime.monsterName = "Slime 03";
-	slime.monsterDescription = "A sickly, green slime creature.";
-	slime.attack = 10;
-	slime.health = 10;
+	slime.SetMonsterName("Slime");
+	slime.SetonsterDescription("A sickly, green slime creature.");
+	slime.SetMonsterAttack(10);
+	slime.SetMonsterHealth(100);
 
-	dragon.monsterName = "Ancient red dragon";
+	
+
+	/*dragon.monsterName = "Ancient red dragon";
 	dragon.monsterDescription = "A ferocious fire breathing red dragon. RUN!";
 	dragon.health = 300;
 	dragon.attack = 1000;
@@ -161,36 +170,43 @@ int main()
 	minotaur.attack = 50;
 	minotaur.health = 100;
 
+	*/
+
 #pragma endregion
 
 #pragma region items
 	//populate items.
 
-	key.ItemName = "Key to the silver throne room";
-	key.ItemDescription = "This key is silvery and warm to the touch.";
+	key.SetItemName("Key to the silver throne room");
+	key.SetItemDescription( "This key is silvery and warm to the touch.");
 
-	torch.ItemName = "Unlit torch";
-	torch.ItemDescription = "Light this torch to see in dark places.";
+	torch.SetItemName("Unlit torch");
+	torch.SetItemDescription("Light this torch to see in dark places.");
 
-	rock.ItemName = "a rock.";
-	rock.ItemDescription = "A rock.";
+	rock.SetItemName("a rock.");
+	rock.SetItemDescription("A rock.");
 
 #pragma endregion
 
 #pragma region areas
 	//populate areas.
 
-	bossRoom.areaName = "";
-	bossRoom.areaDescription = "as you enter, the roar of a dragon fills your ears, you quickly dodge the dragons jaws!";
-	bossRoom.areaContents.push_back("Dragon's Hoard");
 	
-	beforeBoss.areaName = "this area looks to be a cavernous chamber";
-	beforeBoss.areaDescription = "Before you lies a single door to the west, it looks to be made of iron, hot to the touch.";
-	beforeBoss.areaContents.push_back("key");
+	bossRoom.SetAreaName("Dragon's Hoard");
+	bossRoom.SetAreaDescription("as you enter, the roar of a dragon fills your ears, you quickly dodge the dragons jaws!");
+	bossRoom.SetareaContents("Dragon's Hoard of gems and treasure!");
+	bossRoom.SetUserInputHandler("boss room");
 
-	start.areaName = "StartRoom";
-	start.areaDescription = "This is the room you woke up in, naked and afraid.";
-	start.areaContents.push_back("rubble");
+	beforeBoss.SetAreaName("pre_boss");
+	beforeBoss.SetAreaDescription("Before you lies a single door to the west, it looks to be made of iron, hot to the touch.");
+	beforeBoss.SetareaContents("key");
+	beforeBoss.SetUserInputHandler("dank room");
+	
+	start.SetAreaName("StartRoom");
+	start.SetAreaDescription("This is the room you woke up in, naked and afraid.");
+	start.SetareaContents("rubble");
+	start.SetUserInputHandler("dank room");
+	start.SetMonster(&slime);
 
 	start.addExit(&beforeBoss);
 	beforeBoss.addExit(&start);
@@ -245,12 +261,14 @@ int main()
 
 #pragma endregion
 
-	warrior.playerArea = &start;
-	warrior.playerArea->Look();
+	warrior.SetPlayerLocation(&start);
+	// warrior.playerArea->Look();
 	
 	
 
-	warrior.playerArea->Go(, &warrior);
+	warrior.GetPlayerLocation().Go("", &warrior);
+
+//	beforeBoss.Attack(&start.GetMonster(), &warrior);
 
 }
 
