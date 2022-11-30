@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include<vector>
+#include"Creature.h"
 class Area;
 class Monster;
 
-class Player
+class Player : public Creature
 
 {
 public:
@@ -22,26 +23,16 @@ public:
 	void SetPlayerLocation(Area *newplayerArea);
 
 	Area GetPlayerLocation();
-	int GetPlayerHealth();
-	int GetPlayerAttack();
 	std::string GetWeaponName();
-
-
+	
 	void Attack(Player* player, Monster* monster);
 
 
 
 protected:
 
-	std::string playerName;
-	std::string description;
-	int health = 0;
-	int attackValue = 0;
-	std::string weaponName;
-	std::string armourName;
-	std::vector<std::string> inventory;
+	
 	Area* playerArea;
-	std::string location;
 
 };
 

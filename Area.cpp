@@ -8,12 +8,8 @@ Area::Area()
 }
 
 Area::Area(std::string areaName, std::string areaDescription, std::vector<std::string> areaContents, std::vector<Area*> areaExits, std::string userName, Monster* monsterInArea)
-	: areaName()
-	,areaDescription()
-	,areaContents()
-	, areaExits()
-	, inputname()
-	, monster(nullptr)
+
+	:Thing()
 {
 }
 
@@ -24,17 +20,17 @@ Area::~Area()
 
 void Area::SetAreaName(std::string _areaName)
 {
-	areaName = _areaName;
+	name = _areaName;
 }
 
 void Area::SetAreaDescription(std::string newDescription)
 {
-	areaDescription = newDescription;
+	description = newDescription;
 }
 
 void Area::SetareaContents(std::string toSet)
 {
-	areaContents.push_back(toSet);
+	contents.push_back(toSet);
 }
 
 void Area::SetUserInputHandler(std::string _userInput)
@@ -120,13 +116,14 @@ void Area::addExit(Area* addExit)
 
 void Area::Look()
 {
-	std::cout << areaDescription << "And the exits here are: " << "\n";
+	std::cout << description << "And the exits here are: " << "\n";
 
 	for (int i = 0; i < areaExits.size(); ++i)
 	{
 		std::cout << areaExits[i]->inputname << "\n";
 	}
 }
+
 
 void Area::Go(std::string exit, Player* toGo)
 {

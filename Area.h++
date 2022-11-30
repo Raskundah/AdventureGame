@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include<map>
+#include "Thing.h"
 using namespace std;
 
 class Player;
 class Monster;
 
-class Area
+class Area : public Thing
 
 {public:
 	Area();
@@ -28,17 +29,15 @@ class Area
 
 	void addExit(Area* addExit);
 	void Look();
+	
 	void Go(std::string exit, Player* toGo);
 	// void Go(std::string exit, Player* toGo);
 	
 
 protected:
 
-	std::string areaName;
-	std::string areaDescription;
-	std::vector<std::string> areaContents;
 	std::vector<Area*> areaExits;
-	std::string inputname;
+	std::vector<std::string> contents;
 
 	//Player* playerArea;
 	//Player* combatStats;

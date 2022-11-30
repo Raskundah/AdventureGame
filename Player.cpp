@@ -3,18 +3,12 @@
 #include "Area.h++"
 #include "Monster.h++"
 
+	
 
 Player::Player()
- : playerName("")
-,description("")
-, health(0)
-, attackValue(0)
-,weaponName("")
-, armourName("")
-, inventory()
-,playerArea(nullptr)
-,location()
-
+ :
+	Creature()
+	, playerArea()
 {
 
 }
@@ -25,7 +19,7 @@ Player::~Player()
 
 void Player::SetPlayerName(std::string newName)
 {
-	playerName = newName;
+	creatureName = newName;
 }
 
 void Player::SetPlayerDescription(std::string newDescription)
@@ -70,17 +64,6 @@ Area Player::GetPlayerLocation()
 	return *playerArea;
 }
 
-
-int Player::GetPlayerHealth()
-{
-	return health;
-}
-
-int Player::GetPlayerAttack()
-{
-	return attackValue;
-}
-
 std::string Player::GetWeaponName()
 {
 	return weaponName;
@@ -88,48 +71,47 @@ std::string Player::GetWeaponName()
 
 
 
+
 void Player::Attack(Player* player, Monster* monster)
 {
 	std::string start;
 
-	int playerHealth = player->GetPlayerHealth();
-	int playerAttack = player->GetPlayerAttack();
 
-	int monsterHealth = monster->GetMonsterHealth();
-	int monsterAttack = monster->GetMonsterAttack();
-
-	std::string mName = monster->GetMonsterName();
-	std::string pWeapon = player->GetWeaponName();
-
-	std::cout << "A " << mName << " Attacks! Press any key to begin combat." << "\n";
+	std::cout << "A " << monster->GetMonsterName() << " Attacks! Press any key to begin combat." << "\n";
 	std::getline(std::cin, start);
 
-	while (monsterHealth > 0 && playerHealth > 0)
+	while (monster->GetHealth() > 0 && player->GetHealth() > 0)
 	{
-		monsterHealth -= playerAttack;
 
-		std::cout << "You attack " << mName << " with your " << pWeapon << ", It does " << playerAttack << " Damage!" << "\n";
+		monster->TakeDamage(GetAttack());
 
-		if (monsterHealth <= 0)
+		std::cout << "You attack " << monster->GetMonsterName() << " with your " << GetWeaponName() << ", It does " << GetAttack() << " Damage!" << "\n";
+
+		if (monster->GetHealth() <= 0)
 		{
+	
 			std::cout << "You defeated the monster!" << "\n";
-			player->SetHealth(playerHealth);
 		}
 
-		else {
-			std::cout << "The monster is still alive." << "\n";
+		else if (monster->GetHealth() > 0)
+		{
+			std::cout << "The monster is still alive" << "\n";
 		}
-		playerHealth -= monsterAttack;
 
-		if (playerHealth <= 0)
+		TakeDamage(monster->GetAttack());
+
+		if (GetHealth() <= 0)
 		{
 			std::cout << "You died." << "\n";
 		}
 
-		else if (monsterHealth > 0) {
-			std::cout << "The monster hits you for " << monsterAttack << " Damage." << " You stil have " << playerHealth << " Health" << "\n";
+		else if (monster->GetHealth() > 0) {
+			std::cout << "The monster hits you for " << monster->GetAttack() << " Damage." << " You stil have " << GetHealth() << " Health" << "\n";
 		}
+
+
 	}
+
 }
 
 

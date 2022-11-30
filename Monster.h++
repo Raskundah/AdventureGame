@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
-class Monster
+#include "Creature.h"
+
+class Monster : public Creature
 {
 public:
 	Monster();
@@ -11,14 +13,10 @@ public:
 	void SetMonsterHealth(int _health);
 	void SetMonsterAttack(int _attack);
 
-	int GetMonsterHealth();
-	int GetMonsterAttack();
 	std::string GetMonsterName();
 
+
 protected:
-	std::string monsterName;
-	std::string monsterDescription;
-	int health = 0;
-	int attack = 0;
+	 
 };
 
