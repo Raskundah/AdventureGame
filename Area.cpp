@@ -14,7 +14,6 @@ Area::Area(std::string areaName, std::string areaDescription, std::vector<std::s
 	, areaExits()
 	, inputname()
 	, monster(nullptr)
-	,playerArea(nullptr)
 {
 }
 
@@ -43,7 +42,17 @@ void Area::SetUserInputHandler(std::string _userInput)
 	inputname = _userInput;
 }
 
-Player Area::GetPlayerArea()
+Monster* Area::GetMonster()
+{
+	return monster;
+}
+
+void Area::SetMonster(Monster* _monster)
+{
+	monster = _monster;
+}
+
+/*Player Area::GetPlayerArea()
 {
 	return *playerArea;
 }
@@ -58,7 +67,9 @@ void Area::SetMonster(Monster* newMonster)
 	monster = newMonster;
 }
 
-void Area::Attack(Monster* monsterStats, Player* playerStats)
+*/
+
+/*void Area::Attack(Monster* monsterStats, Player* playerStats)
 {
 	std::string start;
 
@@ -100,7 +111,7 @@ void Area::Attack(Monster* monsterStats, Player* playerStats)
 			std::cout << "The monster hits you for " << monsterAttack << " Damage." << " You stil have " << playerHealth << " Health" << "\n";
 			}
 	}
-}
+} */
 
 void Area::addExit(Area* addExit)
 {
@@ -119,22 +130,27 @@ void Area::Look()
 
 void Area::Go(std::string exit, Player* toGo)
 {
-	Look(); 
-	cout << "Where would you like to go?" << "\n";
-	std::getline(std::cin, exit);
-
-	for (int i = 0; i < areaExits.size(); ++i )
 	{
-		if (exit == areaExits[i]->inputname)
+		Look();
+		cout << "Where would you like to go?" << "\n";
+		std::getline(std::cin, exit);
+
+		for (int i = 0; i < areaExits.size(); ++i)
 		{
-			toGo->GetPlayerLocation() = *areaExits[i];
-			std::cout << "You have moved room." << "\n";
+			if (exit == areaExits[i]->inputname)
+			{
+				toGo->SetPlayerLocation(areaExits[i]);
+				std::cout << "You have moved room." << "\n";
+			}
+			else
+				std::cout << "No such room exists" << "\n";
 		}
-		else
-			std::cout << "No such room exists" << "\n";
 	}
-	playerArea = toGo;
 }
+
+
+	
+
 
 
 

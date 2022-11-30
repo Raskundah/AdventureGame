@@ -43,4 +43,3 @@ std::string Monster::GetMonsterName()
 	return monsterName;
 }
 
-

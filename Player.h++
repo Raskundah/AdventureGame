@@ -2,6 +2,7 @@
 #include <string>
 #include<vector>
 class Area;
+class Monster;
 
 class Player
 
@@ -18,12 +19,15 @@ public:
 	void SetWeaponName(std::string _weapon);
 	void SetArmourname(std::string _armour);
 	void AddToInventory(std::string _item);
-	//void SetPlayerLocation(Area *newplayerArea);
+	void SetPlayerLocation(Area *newplayerArea);
 
-	// Area GetPlayerLocation();
+	Area GetPlayerLocation();
 	int GetPlayerHealth();
 	int GetPlayerAttack();
 	std::string GetWeaponName();
+
+
+	void Attack(Player* player, Monster* monster);
 
 
 
@@ -36,7 +40,7 @@ protected:
 	std::string weaponName;
 	std::string armourName;
 	std::vector<std::string> inventory;
-	// Area* playerArea;
+	Area* playerArea;
 	std::string location;
 
 };

@@ -20,14 +20,16 @@ class Area
 	void SetareaContents(std::string newContents);
 	void SetUserInputHandler(std::string _userInput);
 	//Player* GetPlayerArea();
-	//Monster* GetMonster();
-	void SetMonster(Monster* newMonster);
+	Monster* GetMonster();
+	void SetMonster(Monster* _monster);
+	
 	
 	//void Attack(Monster* , Player* );
 
 	void addExit(Area* addExit);
 	void Look();
 	void Go(std::string exit, Player* toGo);
+	// void Go(std::string exit, Player* toGo);
 	
 
 protected:
@@ -38,9 +40,9 @@ protected:
 	std::vector<Area*> areaExits;
 	std::string inputname;
 
-	Player* playerArea;
+	//Player* playerArea;
 	//Player* combatStats;
-	//Monster* monster;
+	Monster* monster;
 	
 };
 

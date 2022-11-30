@@ -1,6 +1,7 @@
 #include "Player.h++"
 #include <iostream>
 #include "Area.h++"
+#include "Monster.h++"
 
 
 Player::Player()
@@ -57,15 +58,18 @@ void Player::AddToInventory(std::string _item)
 	inventory.push_back(_item);
 }
 
-void Player::SetPlayerLocation(Area* newPlayerArea)
+void Player::SetPlayerLocation(Area* newplayerArea)
 {
-	playerArea = newPlayerArea;
+	playerArea = newplayerArea;
 }
+
+
 
 Area Player::GetPlayerLocation()
 {
 	return *playerArea;
 }
+
 
 int Player::GetPlayerHealth()
 {
@@ -81,5 +85,54 @@ std::string Player::GetWeaponName()
 {
 	return weaponName;
 }
+
+
+
+void Player::Attack(Player* player, Monster* monster)
+{
+	std::string start;
+
+	int playerHealth = player->GetPlayerHealth();
+	int playerAttack = player->GetPlayerAttack();
+
+	int monsterHealth = monster->GetMonsterHealth();
+	int monsterAttack = monster->GetMonsterAttack();
+
+	std::string mName = monster->GetMonsterName();
+	std::string pWeapon = player->GetWeaponName();
+
+	std::cout << "A " << mName << " Attacks! Press any key to begin combat." << "\n";
+	std::getline(std::cin, start);
+
+	while (monsterHealth > 0 && playerHealth > 0)
+	{
+		monsterHealth -= playerAttack;
+
+		std::cout << "You attack " << mName << " with your " << pWeapon << ", It does " << playerAttack << " Damage!" << "\n";
+
+		if (monsterHealth <= 0)
+		{
+			std::cout << "You defeated the monster!" << "\n";
+			player->SetHealth(playerHealth);
+		}
+
+		else {
+			std::cout << "The monster is still alive." << "\n";
+		}
+		playerHealth -= monsterAttack;
+
+		if (playerHealth <= 0)
+		{
+			std::cout << "You died." << "\n";
+		}
+
+		else if (monsterHealth > 0) {
+			std::cout << "The monster hits you for " << monsterAttack << " Damage." << " You stil have " << playerHealth << " Health" << "\n";
+		}
+	}
+}
+
+
+
 
 

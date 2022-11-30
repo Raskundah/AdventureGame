@@ -265,10 +265,9 @@ int main()
 	// warrior.playerArea->Look();
 	
 	
-
 	warrior.GetPlayerLocation().Go("", &warrior);
 
-//	beforeBoss.Attack(&start.GetMonster(), &warrior);
+	warrior.Attack( &warrior, &*start.GetMonster());
 
 }
 
